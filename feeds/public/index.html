@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="reader">
+<head>
+	<title>Personal Reader</title>
+
+<!-- Latest compiled and minified Bootstrap CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<style type="text/css">
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+</style>
+</head>
+<body ng-controller="mainController">
+
+<div class="container">
+	<!-- HEADER AND FEEDS COUNT -->
+		<div class="jumbotron text-center">
+			<h1>I'm your personal reader <span class="label label-info">{{ feeds.length }}</span></h1>
+		</div>
+		<!-- FEEDS LIST -->
+		<div id="feeds-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				<!-- LOOP OVER THE FEEDS IN $scope.feeds -->
+				<div class="checkbox" ng-repeat="f in feeds">
+					<label>
+						<input type="checkbox" ng-click="markRead(f._id)"> {{ f.content }}
+					</label>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE CHANNEL -->
+		<div id="channel-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="mashable.com/rss/feeds.xml" ng-model="formData.text">
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW CHANNEL -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createChannel()">Add</button>
+				</form>
+			</div>
+		</div>
+</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.min.js"></script>
+<!-- Latest compiled and minified Bootstrap JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/js/feeds-angular.js"></script>
+</body>
+</html>
